@@ -1,0 +1,2 @@
+module TypeformHelper
+end

@@ -1,4 +1,4 @@
-class FormBuilder
+class TypeformController < ApplicationController
 
   def intro_form
     query = {
@@ -35,14 +35,11 @@ class FormBuilder
         }
       ]
     }
-
-    headers = { "X-API-TOKEN" => ENV["typeform_api_token"]}
-    response = HTTParty.post('https://api.typeform.io/v0.3/forms/', query: query, headers: headers)
-    render json: response.body
+    create_typeform(query)
 
   end
 
-  def work_typeform(url)
+  def work_typeform
     query = {
       "title": "Work",
       "webhook_submit_url": ENV["ngrok_url"],
@@ -71,6 +68,8 @@ class FormBuilder
         }
       ]
     }
+    create_typeform(query)
+    
 
   end
 
@@ -107,6 +106,7 @@ class FormBuilder
         }
       ]
     }
+    create_typeform(query)
   end
 
   def travel_typeform
@@ -150,6 +150,13 @@ class FormBuilder
         }
       ]
     }
+    create_typeform(query)
+  end
+
+  def create_typeform(query)
+    headers = { "X-API-TOKEN" => ENV["typeform_api_token"]}
+    response = HTTParty.post('https://api.typeform.io/v0.3/forms/', query: query, headers: headers)
+    render json: response.body
   end
 
 end
