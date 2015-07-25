@@ -20,5 +20,5 @@
     });
   };
 
-  getYelpSearchData("bars", "Barcelona");
+  getYelpSearchData("animal shelters", "Barcelona");
 

@@ -11,3 +11,7 @@
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
 gmaps_api_key: "AIzaSyAUhrUUCniX8y9hx5zVcxA6gjRDHMPLOE8"
+yelp_consumer_key: "9tC86EYrqcc5w6JQBRwU6A"
+yelp_consumer_secret: "eU_jP7cu-_Oovr1Mni7ZjgsZKyw"
+yelp_token: "Z2-G83w9cVy-DiqBR75hHMe-GzZwarDL"
+yelp_token_secret: "vfTxK8VYEW3rqXLLlYiwe_HBpV8"
