@@ -11,7 +11,7 @@ class WebhooksHandlerController < ApplicationController
 
     yelp = YelpAPI.new
     @city1_bars = yelp.search_by_query(@city1, "bars")
-    puts "number of bars"
+    puts "number of bars in #{@city1}"
     puts @city1_bars
     @city1_swimmingpools = yelp.search_by_query(@city1, "swimming pools")
     @city1_paintball = yelp.search_by_query(@city1, "paintball")

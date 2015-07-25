@@ -16,22 +16,6 @@ class TypeformBuilder
         {
           "type": "short_text",
           "question": "What is the second city?"
-        },
-        {
-          "type": "multiple_choice",
-          "question": "Why are you changing cities?",
-          "required": false,
-          "choices": [
-            {
-              "label": "Work"
-            },
-            {
-              "label": "Study"
-            },
-            {
-              "label": "Travel"
-            }
-          ]
         }
       ]
     }
