@@ -7,9 +7,12 @@ class WebhooksHandlerController < ApplicationController
     @name = params["answers"][0]["data"]["value"]
     @city1 = params["answers"][1]["data"]["value"]
     @city2 = params["answers"][2]["data"]["value"]
+    render status: 200
 
     yelp = YelpAPI.new
     @city1_bars = yelp.search_by_query(@city1, "bars")
+    puts "number of bars"
+    puts @city1_bars
     @city1_swimmingpools = yelp.search_by_query(@city1, "swimming pools")
     @city1_paintball = yelp.search_by_query(@city1, "paintball")
     @city1_museums = yelp.search_by_query(@city1, "museum")
