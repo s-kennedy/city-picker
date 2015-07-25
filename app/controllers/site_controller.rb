@@ -14,5 +14,6 @@ class SiteController < ApplicationController
     render json: response
   end
   
+
 end
 
