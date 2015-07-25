@@ -12,27 +12,27 @@ class SiteController < ApplicationController
   
   def typeform
     query = {
-      "title": "City Picker",
-      "webhook_submit_url": "http://6585b19e.ngrok.io",
-      "fields": [
+      title: "City Picker",
+      webhook_submit_url: "http://6585b19e.ngrok.io",
+      fields: [
         {
-          "type": "short_text",
-          "question": "What is your name?"
+          type: "short_text",
+          question: "What is your name?"
         },
         {
-          "type": "multiple_choice",
-          "question": "Why do you want us to help you to pick a new city?",
-          "description": "Because I want to...",
-          "required": false,
-          "choices": [
+          type: "multiple_choice",
+          question: "Why do you want us to help you to pick a new city?",
+          description: "Because I want to...",
+          required: false,
+          choices: [
             {
-              "label": "Work"
+              label: "Work"
             },
             {
-              "label": "Study abroad"
+              label: "Study abroad"
             },
             {
-              "label": "Travel"
+              label: "Travel"
             }
           ]
         }
@@ -45,8 +45,6 @@ class SiteController < ApplicationController
   end
 
   def results
-
   end
-
 end
 
