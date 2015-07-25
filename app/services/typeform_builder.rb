@@ -144,4 +144,8 @@ class TypeformBuilder
 
   end
 
+  def render_results_page
+    response
+  end
+
 end

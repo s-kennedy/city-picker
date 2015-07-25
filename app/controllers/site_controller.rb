@@ -4,7 +4,8 @@ class SiteController < ApplicationController
   def index
   end
 
-  def results
+  def result
+    @result = Result.last
   end
 
 end

@@ -12,6 +12,7 @@ $(function(){
             success: function(response) {
               console.log(response);
                 $("#typeform").attr("src", response.links[1].href);
+                console.log("new form!")
             },
             error: function(error) {
                 console.log(error);

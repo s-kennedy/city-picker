@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'site#index'
+  get '/result', to: 'site#result'
 
   # get '/yelp', to: 'site#yelp_search'
 
