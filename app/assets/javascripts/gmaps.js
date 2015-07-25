@@ -1,7 +1,35 @@
 $(function() {
 
+  var CityPickerMap = function() {
+  };
+
+  CityPickerMap.prototype.renderMap = function() {
+    
+    var styles = [{"elementType":"geometry","stylers":[{"hue":"#ff4400"},{"saturation":-68},{"lightness":-4},{"gamma":0.72}]},{"featureType":"road","elementType":"labels.icon"},{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"hue":"#0077ff"},{"gamma":3.1}]},{"featureType":"water","stylers":[{"hue":"#00ccff"},{"gamma":0.44},{"saturation":-33}]},{"featureType":"poi.park","stylers":[{"hue":"#44ff00"},{"saturation":-23}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"hue":"#007fff"},{"gamma":0.77},{"saturation":65},{"lightness":99}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"gamma":0.11},{"weight":5.6},{"saturation":99},{"hue":"#0091ff"},{"lightness":-86}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"lightness":-48},{"hue":"#ff5e00"},{"gamma":1.2},{"saturation":-23}]},{"featureType":"transit","elementType":"labels.text.stroke","stylers":[{"saturation":-64},{"hue":"#ff9100"},{"lightness":16},{"gamma":0.47},{"weight":2.7}]}]
+
+    var mapOptions = {
+      zoom: 4, 
+      scrollwheel: false,
+      center: this.currentLocation,
+      styles: styles
+    };
+    
+    this.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    this.bounds = new google.maps.LatLngBounds();
+  }
+
+  CityPickerMap.prototype.addMarker = function(location, name) {
+    var marker = new google.maps.Marker({
+        position: location,
+        map: this.map,
+        title: name
+    });
+    this.bounds.extend(marker.position)
+    this.repositionMap(location);
+  };
+
   CityPickerMap.prototype.getCurrentLocation = function () {
-    if (!navigator.geolocation) throw new Error("Geolocation is not available, just type your location into the search bar instead!");
+    if (!navigator.geolocation) throw new Error("Geolocation is not available!");
       
     var options = {
       enableHighAccuracy: true,
@@ -12,39 +40,20 @@ $(function() {
     navigator.geolocation.getCurrentPosition(this.geolocateSuccess.bind(this),
                                              this.geolocateError.bind(this),
                                              options);
-
-    new google.maps.LatLng(41.3917782, 2.1772809999999936)
   };
 
-  var CityPickerMap = function() {
-    var styles = [{"elementType":"geometry","stylers":[{"hue":"#ff4400"},{"saturation":-68},{"lightness":-4},{"gamma":0.72}]},{"featureType":"road","elementType":"labels.icon"},{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"hue":"#0077ff"},{"gamma":3.1}]},{"featureType":"water","stylers":[{"hue":"#00ccff"},{"gamma":0.44},{"saturation":-33}]},{"featureType":"poi.park","stylers":[{"hue":"#44ff00"},{"saturation":-23}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"hue":"#007fff"},{"gamma":0.77},{"saturation":65},{"lightness":99}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"gamma":0.11},{"weight":5.6},{"saturation":99},{"hue":"#0091ff"},{"lightness":-86}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"lightness":-48},{"hue":"#ff5e00"},{"gamma":1.2},{"saturation":-23}]},{"featureType":"transit","elementType":"labels.text.stroke","stylers":[{"saturation":-64},{"hue":"#ff9100"},{"lightness":16},{"gamma":0.47},{"weight":2.7}]}]
+  CityPickerMap.prototype.geolocateSuccess = function(position) {
+    console.log("got position!");
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+    this.currentLocation = new google.maps.LatLng(lat, lon);
+    this.renderMap();
+    this.addMarker(this.currentLocation, "You!");
+  }
 
-    var mapOptions = {
-      zoom: 4, 
-      scrollwheel: false,
-      center: this.getCurrentLocation,
-      styles: styles
-    };
-    this.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    this.locations = []
-    this.bounds = new google.maps.LatLngBounds();
-
-  };
-
-  CityPickerMap.prototype.addMarker = function(location, name) {
-
-    var marker = new google.maps.Marker({
-        position: location,
-        map: this.map,
-        title: name
-    });
-    this.bounds.extend(marker.position)
-    this.repositionMap(location);
-  };
-
-  CityPickerMap.prototype.addLocation = function(location) {
-    this.locations.push(location);
-  };
+  CityPickerMap.prototype.geolocateError = function(error) {
+    console.log(error);
+  }
 
   CityPickerMap.prototype.getCoords = function(address, name, callback) {
 
@@ -63,16 +72,15 @@ $(function() {
 
   CityPickerMap.prototype.repositionMap = function(location) {
     this.map.setCenter(location);
-    this.map.setZoom(15);
+    this.map.setZoom(10);
   };
 
   CityPickerMap.prototype.resizeMap = function() {
     this.map.fitBounds(this.bounds);
   };
 
-  window.cityPickerMap = new CityPickerMap();
-  cityPickerMap.addListeners();
-
+  var cityPickerMap = new CityPickerMap();
+  cityPickerMap.getCurrentLocation();
 })
 
 
