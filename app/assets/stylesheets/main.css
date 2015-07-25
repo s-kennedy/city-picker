@@ -1,0 +1,26 @@
+div#welcome-panel {
+	background: url('/assets/pty.png');
+	height: 490px;
+}
+
+p.welcome{
+	color: white;
+	font-size: 4em;
+	padding-top: 1em;
+	padding-left: 1em;
+}
+
+p.welcome:nth-child(2){
+	padding-left: 2em;
+	font-size: 5em;
+}
+
+p.welcome>span{
+	font-weight: bold;
+}
+
+#typeform{
+	width: 100%;
+	height: 40em;
+}
+
