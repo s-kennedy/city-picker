@@ -41,6 +41,8 @@ class WebhooksHandlerController < ApplicationController
     result.city2_paintball = @city2_paintball
     result.city2_swimmingpools = @city2_swimmingpools
     result.save
+
+    render status: 200
   end
 
 
