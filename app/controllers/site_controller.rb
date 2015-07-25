@@ -14,23 +14,30 @@ class SiteController < ApplicationController
   def typeform
     query = {
       "title": "City Picker",
-      "webhook_submit_url": "http://20bbdb89.ngrok.com/typeform_results",
+      "webhook_submit_url": ENV["ngrok_url"],
       "fields": [
         {
           "type": "short_text",
           "question": "What is your name?"
         },
         {
+          "type": "short_text",
+          "question": "Think of two cities you'd like to go. What is the first one?"
+        },
+        {
+          "type": "short_text",
+          "question": "What is the second city?"
+        },
+        {
           "type": "multiple_choice",
-          "question": "Why do you want us to help you to pick a new city?",
-          "description": "Because I want to...",
+          "question": "Why are you changing cities?",
           "required": false,
           "choices": [
             {
               "label": "Work"
             },
             {
-              "label": "Study abroad"
+              "label": "Study"
             },
             {
               "label": "Travel"

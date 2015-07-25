@@ -24,10 +24,9 @@
 
 $(function(){
 
-
-    var fields = {
+  var query = {
       "title": "City Picker",
-      "webhook_submit_url": "http://6585b19e.ngrok.io",
+      "webhook_submit_url": "http://20bbdb89.ngrok.com/typeform_results",
       "fields": [
         {
           "type": "short_text",
@@ -53,11 +52,10 @@ $(function(){
       ]
     }
 
-
     window.getTypeform = function() {
         $.ajax({
             url: "/typeform",
-            data: '',
+            data: query,
             success: function(response) {
               console.log(response.links[1].href);
                 $("#typeform").attr("src", response.links[1].href);
