@@ -20,16 +20,20 @@ class SiteController < ApplicationController
           "question": "What is your name?"
         },
         {
+          "type": "short_text",
+          "question": "Name two cities you'll like to go. (Separate it by a comma)"
+        },
+        {
           "type": "multiple_choice",
-          "question": "Why do you want us to help you to pick a new city?",
-          "description": "Because I want to...",
+          "question": "What's your motive to change city?",
+          "description": "On most days...",
           "required": false,
           "choices": [
             {
               "label": "Work"
             },
             {
-              "label": "Study abroad"
+              "label": "Study"
             },
             {
               "label": "Travel"
@@ -42,6 +46,124 @@ class SiteController < ApplicationController
     response = HTTParty.post('https://api.typeform.io/v0.3/forms/', query: query, headers: headers)
     render json: response.body
 
+  end
+
+
+  def work_typeform(url)
+    query = {
+      "title": "Work",
+      "webhook_submit_url": url,
+      "fields": [
+        {
+          "type": "multiple_choice",
+          "question": "What do you care about the most?",
+          "required": false,
+          "choices": [
+            {
+              "label": "Coworking Spaces"
+            },
+            {
+              "label": "Cafés with wi-fi"
+            },
+            {
+              "label": "Food"
+            },
+            {
+              "label": "Nightlife"
+            },
+            {
+              "label": "Local Services"
+            },
+          ]
+        }
+      ]
+    }
+    headers = { "X-API-TOKEN" => "56e3b81325add8b5f48645d27eaf7fd3"}
+    response = HTTParty.post('https://api.typeform.io/v0.3/forms/', query: query, headers: headers)
+    render json: response.body
+  end
+
+  def study_typeform(url)
+    query = {
+      "title": "Study",
+      "webhook_submit_url": url,
+      "fields": [
+        {
+          "type": "multiple_choice",
+          "question": "What do you care about the most?",
+          "required": false,
+          "choices": [
+            {
+              "label": "Active life"
+            },
+            {
+              "label": "Bars"
+            },
+            {
+              "label": "Nightlife"
+            },
+            {
+              "label": "Food"
+            },
+            {
+              "label": "Local Services"
+            },
+            {
+              "label": "Restaurants"
+            }
+          ]
+        }
+      ]
+    }
+    headers = { "X-API-TOKEN" => "56e3b81325add8b5f48645d27eaf7fd3"}
+    response = HTTParty.post('https://api.typeform.io/v0.3/forms/', query: query, headers: headers)
+    render json: response.body
+  end
+
+   def travel_typeform(url)
+    query = {
+      "title": "Study",
+      "webhook_submit_url": url,
+      "fields": [
+        {
+          "type": "multiple_choice",
+          "question": "What do you care about the most?",
+          "required": false,
+          "choices": [
+            {
+              "label": "Hotels & Travel"
+            },
+            {
+              "label": "Active life"
+            },
+            {
+              "label": "Bars"
+            },
+            {
+              "label": "Nightlife"
+            },
+            {
+              "label": "Food"
+            },
+            {
+              "label": "Local Services"
+            },
+            {
+              "label": "Restaurants"
+            },
+            {
+              "label": "Shopping"
+            },
+            {
+              "label": "Arts & Entertainment"
+            }
+          ]
+        }
+      ]
+    }
+    headers = { "X-API-TOKEN" => "56e3b81325add8b5f48645d27eaf7fd3"}
+    response = HTTParty.post('https://api.typeform.io/v0.3/forms/', query: query, headers: headers)
+    render json: response.body
   end
 
   def results
