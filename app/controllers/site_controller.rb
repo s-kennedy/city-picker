@@ -7,13 +7,5 @@ class SiteController < ApplicationController
   def results
   end
 
-  def yelp_search
-    city = params[:city]
-    query = params[:query]
-    response = Yelp.client.search(city, { term: query })
-    render json: response
-  end
-  
-
 end
 

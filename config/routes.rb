@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: 'site#index'
 
-  get '/yelp', to: 'site#yelp_search'
+  # get '/yelp', to: 'site#yelp_search'
 
   get '/typeform', to: 'typeform#intro_form'
   get '/work_typeform', to: 'typeform#work_typeform'
