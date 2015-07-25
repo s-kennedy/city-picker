@@ -79,8 +79,7 @@ $(function() {
     this.map.fitBounds(this.bounds);
   };
 
-  var cityPickerMap = new CityPickerMap();
-  cityPickerMap.getCurrentLocation();
+
 })
 
 

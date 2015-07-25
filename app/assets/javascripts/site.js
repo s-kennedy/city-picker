@@ -20,7 +20,7 @@
     });
   };
 
-  getYelpSearchData("animal shelters", "Barcelona");
+
 
 $(function(){
 
