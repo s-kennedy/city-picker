@@ -1,48 +1,27 @@
 class WebhooksHandlerController < ApplicationController
   protect_from_forgery :except => :receive_results
-  
-  def receive_results
+
+  def intro_form
     puts "got it!!"
     ActionController::Parameters.permit_all_parameters = true
-    case response.id
-    when "SIx1WT4E5wQzLA"
-      intro_form(response)
-    end
+    @name = params["answers"][0]["data"]["value"]
+    @city1 = params["answers"][1]["data"]["value"]
+    @city2 = params["answers"][2]["data"]["value"]
 
-    end
+    yelp = YelpAPI.new
+    @city1_bars = yelp.search_by_query(@city1, "bars")
+    @city1_swimmingpools = yelp.search_by_query(@city1, "swimming pools")
+    @city1_paintball = yelp.search_by_query(@city1, "paintball")
+    @city1_museums = yelp.search_by_query(@city1, "museum")
+    @city1_mcdonalds = yelp.search_by_query(@city1, "McDonalds")
+
+    @city2_bars = yelp.search_by_query(@city2, "bars")
+    @city2_swimmingpools = yelp.search_by_query(@city2, "swimming pools")
+    @city2_paintball = yelp.search_by_query(@city2, "paintball")
+    @city2_museums = yelp.search_by_query(@city2, "museum")
+    @city2_mcdonalds = yelp.search_by_query(@city2, "McDonalds")
+
   end
 
-
-  def intro_form(response)
-    @name = response[0].value
-    @city1 = response[1].value
-    @city2 = response[2].value
-    motive = response[3].value.label
-      if motive == "Travel"
-        @form_id = 
-      elsif motive == "Study"
-        study_form
-      else motive == "Work"
-        work_form
-      end
-      render 'site#results'
-  end
-
-  def results
-  end
-
-  def study_form
-    response = params[:answers]
-  end
-
-  def travel_form
-    response = params[:answers]
-  end
-
-  private
-
-    def results_params
-      params.permit(:data, :answers, :id, :token)
-    end
 
 end

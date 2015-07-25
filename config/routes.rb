@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/study_typeform', to: 'typeform#study_typeform'
   get '/travel_typeform', to: 'typeform#travel_typeform'
 
-  post '/typeform_results', to: 'webhooks_handler#receive_results'
+  post '/typeform_results', to: 'webhooks_handler#intro_form'
+  post '/typeform_results2', to: 'webhooks_handler#travel_form'
 
 end

@@ -156,7 +156,8 @@ class TypeformBuilder
   def create_typeform(query)
     headers = { "X-API-TOKEN" => ENV["typeform_api_token"]}
     response = HTTParty.post('https://api.typeform.io/v0.3/forms/', query: query, headers: headers)
-    render json: response.body
+    response.body
+
   end
 
 end

@@ -10,7 +10,7 @@ $(function(){
             url: "/typeform",
             data: '',
             success: function(response) {
-              console.log(response.links[1].href);
+              console.log(response);
                 $("#typeform").attr("src", response.links[1].href);
             },
             error: function(error) {
@@ -20,6 +20,5 @@ $(function(){
     }
 
     getTypeform();
-
 
 })
