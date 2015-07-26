@@ -6,6 +6,7 @@ class SiteController < ApplicationController
 
   def result
     @result = Result.last
+    # @result = Result.find_by response_id: id
   end
 
 end

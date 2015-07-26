@@ -11,34 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150725215223) do
+ActiveRecord::Schema.define(version: 20150726135429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "results", force: :cascade do |t|
     t.string   "city1"
-    t.string   "city1_swimmingpools"
-    t.string   "city1_museums"
-    t.string   "city1_bars"
+    t.string   "city1_query1"
+    t.string   "city1_query2"
+    t.string   "city1_query3"
     t.string   "city1_mcdonalds"
-    t.string   "city1_paintball"
     t.string   "city2"
-    t.string   "city2_swimmingpools"
-    t.string   "city2_museums"
-    t.string   "city2_bars"
+    t.string   "city2_query1"
+    t.string   "city2_query2"
+    t.string   "city2_query3"
     t.string   "city2_mcdonalds"
-    t.string   "city2_paintball"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.string   "response_id"
     t.string   "query1"
     t.string   "query2"
     t.string   "query3"
-  end
-
-  create_table "webhook_handlers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "name"
   end
 
 end

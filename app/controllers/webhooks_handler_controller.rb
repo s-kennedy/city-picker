@@ -1,49 +1,45 @@
 class WebhooksHandlerController < ApplicationController
   protect_from_forgery :except => :receive_results
 
-  def intro_form
+  def receive_results
 
-    puts "responses from Typeform!!"
+    puts "got responses from Typeform!!"
     ActionController::Parameters.permit_all_parameters = true
+    user_response = {}
+    user_response[:name] = params["answers"][0]["data"]["value"]
+    user_response[:city1] = params["answers"][1]["data"]["value"]
+    user_response[:city2] = params["answers"][2]["data"]["value"]
+    user_response[:query1] = params["answers"][3]["data"]["value"]
+    user_response[:query2] = params["answers"][4]["data"]["value"]
+    user_response[:query3] = params["answers"][5]["data"]["value"]
+    user_response[:response_id] = params["token"]
+    get_yelp_data(user_response)
+    puts "getting info from yelp... "
 
-    @name = params["answers"][0]["data"]["value"]
-    @city1 = params["answers"][1]["data"]["value"]
-    @city2 = params["answers"][2]["data"]["value"]
-    @query1 = params["answers"][3]["data"]["value"]
-    @query2 = params["answers"][4]["data"]["value"]
-    @query3 = params["answers"][5]["data"]["value"]
+  end
+
+  def get_yelp_data(user_response)
 
     yelp = YelpAPI.new
-    @city1_bars = yelp.search_by_query(@city1, @query1)
-    @city1_swimmingpools = yelp.search_by_query(@city1, @query2)
-    @city1_paintball = yelp.search_by_query(@city1, @query3)
-    @city1_mcdonalds = yelp.search_by_query(@city1, "McDonalds")
 
-    @city2_bars = yelp.search_by_query(@city2, @query1)
-    @city2_swimmingpools = yelp.search_by_query(@city2, @query2)
-    @city2_paintball = yelp.search_by_query(@city2, @query3)
-    @city2_mcdonalds = yelp.search_by_query(@city2, "McDonalds")
-    
-    puts "responses from Yelp!!"
+    user_response[:city1_query1] = yelp.search_by_query(user_response[:city1], user_response[:query1])
+    user_response[:city1_query2] = yelp.search_by_query(user_response[:city1], user_response[:query2])
+    user_response[:city1_query3] = yelp.search_by_query(user_response[:city1], user_response[:query3])
+    user_response[:city1_mcdonalds] = yelp.search_by_query(user_response[:city1], "McDonalds")
 
-    result = Result.new
-    result.city1 = @city1
-    result.city2 = @city2
-    result.city1_bars = @city1_bars
-    result.city1_mcdonalds = @city1_mcdonalds
-    result.city1_paintball = @city1_paintball
-    result.city1_swimmingpools = @city1_swimmingpools
-    result.city2_bars = @city2_bars
-    result.city2_mcdonalds = @city2_mcdonalds
-    result.city2_paintball = @city2_paintball
-    result.city2_swimmingpools = @city2_swimmingpools
-    result.query1 = @query1
-    result.query2 = @query2
-    result.query3 = @query3
-    result.save
 
-    render status: 200
+    user_response[:city2_query1] = yelp.search_by_query(user_response[:city2], user_response[:query1])
+    user_response[:city2_query2] = yelp.search_by_query(user_response[:city2], user_response[:query2])
+    user_response[:city2_query3] = yelp.search_by_query(user_response[:city2], user_response[:query3])
+    user_response[:city2_mcdonalds] = yelp.search_by_query(user_response[:city2], "McDonalds")
+    puts "got responses from yelp!"
+    save_response(user_response)
 
+  end
+
+  def save_response(user_response)
+    puts "saving user response"
+    Result.create(user_response)
   end
 
 
