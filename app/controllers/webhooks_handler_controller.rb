@@ -39,7 +39,7 @@ class WebhooksHandlerController < ApplicationController
 
   def save_response
     puts "saving user response"
-    Result.create(user_response)
+    Result.create(user_response).
   end
 
   def check_submission
