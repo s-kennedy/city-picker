@@ -14,7 +14,7 @@
 
  *= require bootstrap.min
  *= require bootstrap_and_overrides
- *= require font-awesome.min
+
  *= require stylish-portfolio
  *= require_tree .
  *= require_self

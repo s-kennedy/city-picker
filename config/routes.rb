@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   get '/typeform', to: 'typeform#intro_form'
   post '/typeform_results', to: 'webhooks_handler#receive_results'
+  get '/check_submission', to: 'webhooks_handler#check_submission'
 
 end

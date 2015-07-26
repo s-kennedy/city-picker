@@ -18,7 +18,7 @@ class WebhooksHandlerController < ApplicationController
 
   end
 
-  def get_yelp_data(user_response)
+  def get_yelp_data
 
     yelp = YelpAPI.new
 
@@ -37,9 +37,14 @@ class WebhooksHandlerController < ApplicationController
 
   end
 
-  def save_response(user_response)
+  def save_response
     puts "saving user response"
     Result.create(user_response)
+  end
+
+  def check_submission
+    submission = Result.find_by response_id: user_response[:response_id]
+    render json: submission.present?
   end
 
 
