@@ -15,7 +15,19 @@ class TypeformBuilder
         },
         {
           "type": "short_text",
-          "question": "What is the second city?"
+          "question": "What is the second one?"
+        },
+        {
+          "type": "short_text",
+          "question": "What do you want to compare?"
+        },
+        {
+          "type": "short_text",
+          "question": "Something else?"
+        },
+        {
+          "type": "short_text",
+          "question": "One more thing?"
         }
       ]
     }
@@ -142,10 +154,6 @@ class TypeformBuilder
     response = HTTParty.post('https://api.typeform.io/v0.3/forms/', query: query, headers: headers)
     response.body
 
-  end
-
-  def render_results_page
-    response
   end
 
 end
