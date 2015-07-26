@@ -3,7 +3,7 @@ class TypeformBuilder
   def intro_form
     query = {
       "title": "City Picker",
-      "webhook_submit_url": ENV["ngrok_url"],
+      "webhook_submit_url": ENV["webhook_url"],
       "fields": [
         {
           "type": "short_text",
@@ -38,7 +38,7 @@ class TypeformBuilder
   def work_typeform
     query = {
       "title": "Work",
-      "webhook_submit_url": ENV["ngrok_url"],
+      "webhook_submit_url": ENV["webhook_url"],
       "fields": [
         {
           "type": "multiple_choice",
@@ -73,7 +73,7 @@ class TypeformBuilder
   def study_typeform
     query = {
       "title": "Study",
-      "webhook_submit_url": ENV["ngrok_url"],
+      "webhook_submit_url": ENV["webhook_url"],
       "fields": [
         {
           "type": "multiple_choice",
@@ -108,7 +108,7 @@ class TypeformBuilder
   def travel_typeform
     query = {
       "title": "Study",
-      "webhook_submit_url": ENV["ngrok_url"],
+      "webhook_submit_url": ENV["webhook_url"],
       "fields": [
         {
           "type": "multiple_choice",
