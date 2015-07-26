@@ -6,9 +6,6 @@ class SiteController < ApplicationController
 
   def result
     @result = Result.last
-    city1_population = City.find_by(name: @result.city1).population
-    city2_population = City.find_by(name: @result.city2).population
-
   end
 
 end
