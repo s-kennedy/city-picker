@@ -13,8 +13,9 @@ class WebhooksHandlerController < ApplicationController
     user_response[:query2] = params["answers"][4]["data"]["value"]
     user_response[:query3] = params["answers"][5]["data"]["value"]
     user_response[:response_id] = params["token"]
-    get_yelp_data(user_response)
+    render json: { status: 200 }
     puts "getting info from yelp... "
+    get_yelp_data(user_response)
 
   end
 
